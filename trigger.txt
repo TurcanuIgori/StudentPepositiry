@@ -1,0 +1,18 @@
+create or replace function average_mark() returns trigger as $average$
+declare avg numeric(4, 2);
+begin
+	discipline_avg=(Select avg(mark) from mark where student_id = new.student_id and discipline_id=new.discipline_id group by discipline_id, student_id);
+	if exists (select * from discipline_average where student_id = new.student_id and discipline_id=new.discipline_id)
+
+	then
+		update discipline_average set avg=discipline_avg
+		where student_id=new.student_id and discipline_id=new.discipline_id;
+	else
+		insert into discipline_average(student_id, discipline_id, avg) values (new.student_id, new.discipline_id, discipline_avg);
+	end if;
+return new;
+end;
+$average$ LANGUAGE plpgsql;
+
+create trigger average after insert on mark
+for each row execute procedure average_mark()
