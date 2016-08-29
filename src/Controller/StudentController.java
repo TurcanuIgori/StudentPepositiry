@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +24,7 @@ import Model.Search;
 import Model.Student;
 import Service.StudentService;
 
-@WebServlet("/list")
+//@WebServlet("/list")
 public class StudentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	StudentService studentService = new StudentService();
@@ -48,7 +47,7 @@ public class StudentController extends HttpServlet {
 			request.setAttribute("listGroups", studentService.listGroups());
 			request.setAttribute("listStudents", studentService.getCompletListStudents());
 			session.setAttribute("listStudents", studentService.getCompletListStudents());
-			request.getRequestDispatcher("list.jsp").forward(request, response);
+			request.getRequestDispatcher("/list.jsp").forward(request, response);
 			break;
 		case LIST:
 			int abonament_id = Integer.parseInt(request.getParameter("id"));
@@ -190,6 +189,6 @@ public class StudentController extends HttpServlet {
 		request.setAttribute("listDisciplines", studentService.listDisciplines());
 		request.setAttribute("listGroups", studentService.listGroups());
 		request.setAttribute("listStudents", listStudents);
-		request.getRequestDispatcher("list.jsp").forward(request, response);
+		request.getRequestDispatcher("/list.jsp").forward(request, response);
 	}
 }

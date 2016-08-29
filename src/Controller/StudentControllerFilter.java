@@ -46,24 +46,14 @@ import Model.Student;
  * Servlet Filter implementation class StudentControllerFilter
  */
 public class StudentControllerFilter implements Filter {
-
-	/**
-	 * Default constructor.
-	 */
 	public StudentControllerFilter() {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
 	}
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
